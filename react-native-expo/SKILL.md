@@ -68,38 +68,57 @@ Generate this exact layout for a new project:
 
 ```
 <project-name>/
-├── assets/                     # Static resources
-│   ├── icon.png
-│   ├── splash.png
+├── assets/                         # Application assets
 │   ├── adaptive-icon.png
-│   └── favicon.png
+│   ├── favicon.png
+│   ├── icon.png
+│   └── splash.png
 ├── src/
-│   ├── config/                 # Global configurations
-│   │   ├── theme.tsx          # Theme definition and styles
-│   │   └── helpers/           # Helper functions
-│   │       └── <name>.helper.ts
-│   ├── core/                  # Business logic
-│   │   └── models/            # Types and interfaces
-│   │       └── <name>.model.ts
-│   └── presentation/          # Presentation layer
-│       ├── components/        # Reusable components
-│       │   ├── <feature>/     # Feature-scoped components
-│       │   └── ui/            # Base UI components
-│       ├── context/           # React contexts
-│       │   └── <Name>Context.tsx
-│       ├── hooks/             # Custom hooks
+│   ├── config/                     # External configuration and adapters
+│   │   ├── adapters/              # External service adapters
+│   │   │   ├── http/              # HTTP adapters
+│   │   │   │   ├── axios.adapter.ts
+│   │   │   │   └── http.adapters.ts
+│   │   │   └── <external-api>.adapter.ts
+│   │   └── helpers/               # Helper functions
+│   │       └── <name>.ts
+│   ├── core/                       # Business and domain logic
+│   │   ├── models/                 # Domain models
+│   │   │   └── <name>.model.ts
+│   │   └── use-cases/              # Application use cases
+│   │       ├── index.ts
+│   │       ├── <feature>/          # Feature-specific use cases
+│   │       │   └── <action>.use-case.ts
+│   │       └── <features>/         # Collection/list use cases
+│   │           └── <action>.use-case.ts
+│   ├── infrastructure/              # External data structures and mappings
+│   │   ├── interfaces/             # API response interfaces
+│   │   │   └── <resource>.responses.ts
+│   │   └── mappers/                # API to domain mappings
+│   │       └── <resource>.mapper.ts
+│   └── presentation/               # Presentation layer
+│       ├── components/             # Reusable UI components
+│       │   ├── <feature>/          # Feature-scoped components
+│       │   ├── loaders/            # Loading components
+│       │   └── <resource>/         # Resource-specific components
+│       ├── hooks/                  # Custom hooks
 │       │   └── use<Name>.tsx
-│       ├── navigation/        # Navigation configuration
-│       │   ├── Navigation.tsx
-│       │   └── <Type>Navigation.tsx
-│       └── screens/           # Main screens
-│           └── <feature>/
-│               └── <Name>Screen.tsx
-├── App.tsx                    # Root component
-├── app.json                   # Expo configuration
-├── package.json               # Dependencies
-├── tsconfig.json              # TypeScript configuration
-└── babel.config.js            # Babel configuration
+│       ├── navigation/             # Navigation configuration
+│       │   └── Navigation.tsx
+│       └── pages/                # Application pages/screens
+│           ├── <feature>/          # Feature page
+│           │   └── <Feature>Page.tsx
+│           └── <another-feature>/ # Another feature page
+│               └── <Feature>Page.tsx
+├── .env.template                   # Environment variables template
+├── .gitignore                      # Git ignore rules
+├── App.tsx                         # Application root component
+├── app.json                        # Expo configuration
+├── babel.config.js                 # Babel configuration
+├── package.json                    # Dependencies and scripts
+├── package-lock.json               # Locked dependencies
+├── README.md                       # Project documentation
+└── tsconfig.json                   # TypeScript configuration
 ```
 
 ## Code Conventions
@@ -107,6 +126,10 @@ Generate this exact layout for a new project:
 - **TypeScript** for static typing on every file.
 - **Naming**:
   - Models: `<name>.model.ts` (e.g. `product.model.ts`)
+  - Use cases: `<action>.use-case.ts` (e.g. `fetchProducts.use-case.ts`)
+  - Adapters: `<external-api>.adapter.ts` (e.g. `openai.adapter.ts`)
+  - Mappers: `<resource>.mapper.ts` (e.g. `product.mapper.ts`)
+  - Interfaces: `<resource>.responses.ts` (e.g. `product.responses.ts`)
   - Helpers: `<name>.helper.ts`
   - Components: `PascalCase.tsx` (e.g. `ProductCard.tsx`)
   - Hooks: `use<Name>.tsx` (e.g. `useSearchBar.tsx`)
