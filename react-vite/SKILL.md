@@ -85,7 +85,7 @@ Generate this exact layout for a new project:
 │   │       │   └── <action>.use-case.ts
 │   │       └── <features>/         # Collection/list use cases
 │   │           └── <action>.use-case.ts
-│   ├── infrastucture/              # External data structures and mappings
+│   ├── infrastructure/              # External data structures and mappings
 │   │   ├── interfaces/             # API response interfaces
 │   │   │   └── <resource>.responses.ts
 │   │   └── mappers/                # API to domain mappings
